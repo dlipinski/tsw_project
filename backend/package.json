@@ -1,0 +1,23 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend for vue app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js",
+    "seed": "node seed.js"
+  },
+  "author": "Dawid Lipiński",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "http": "0.0.0",
+    "mongoose": "^5.6.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
+  }
+}
