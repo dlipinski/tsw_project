@@ -1,5 +1,4 @@
-const signin = require('./signin')
-const signup = require('./signup')
+const login = require('./login')
 const User = require('../models/userModel')
 
 module.exports = (passport) => {
@@ -13,7 +12,5 @@ module.exports = (passport) => {
         })
     })
 
-    // Setting up Passport Strategies for Login and SignUp
-    signin(passport)
-    signup(passport)
+    login(passport)
 }

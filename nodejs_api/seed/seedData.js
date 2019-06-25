@@ -1,16 +1,16 @@
 const mongoose = require('mongoose')
 const http = require('http')
 
-const Class = require('./models/classModel')
-const Person = require('./models/personModel')
-const Horse = require('./models/horseModel')
-const Note = require('./models/noteModel')
+const Class = require('../models/classModel')
+const Person = require('../models/personModel')
+const Horse = require('../models/horseModel')
+const Note = require('../models/noteModel')
 
 const getDataAsync = async type => {
     return new Promise(resolve => {
         let options = {
             host: 'localhost',
-            port: 3000,
+            port: 4000,
             path: `/${type}`
         }
         http.get(options, res => {

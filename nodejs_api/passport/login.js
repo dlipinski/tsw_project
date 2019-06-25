@@ -3,7 +3,7 @@ const User = require('../models/userModel')
 const bCrypt = require('bcrypt-nodejs')
 
 module.exports = (passport) => {
-	passport.use('signin', new LocalStrategy({
+	passport.use('login', new LocalStrategy({
             passReqToCallback : true
         },
         (req, username, password, done) => { 
@@ -25,7 +25,6 @@ module.exports = (passport) => {
 
         })
     )
-
 
     const isValidPassword = (user, password) => {
         return bCrypt.compareSync(password, user.password)
