@@ -33,13 +33,15 @@ exports.create = (req, res) => {
     let newPerson = new Person()
     newPerson.name = req.body.name
     newPerson.country = req.body.country
+    newPerson.type = req.body.type
     newPerson.save(err => {
         if (err) {
             console.log(err)
             res.status(400).end()
         }
+        res.end()
     })
-    res.end()
+    
 }
 
 exports.update = (req, res) => {

@@ -6,8 +6,8 @@
             <b-collapse is-nav id="nav_collapse">
                 <b-navbar-nav>
                     <b-nav-item to="/">Panel kibica</b-nav-item>
-                    <b-nav-item to="/posts-manager">Posts Manager</b-nav-item>
-                    <b-nav-item to="/login" >Login</b-nav-item>
+                    <b-nav-item to="/judges">Admin</b-nav-item>
+                    <b-nav-item to="/login">Login</b-nav-item>
                     <b-nav-item href="#"  @click="logout">Logout</b-nav-item>
                 </b-navbar-nav>
             </b-collapse>
@@ -22,17 +22,25 @@ import router from './router'
 import axios from 'axios'
 export default {
     name: 'App',
+    mounted: function () {
+    },
+    data () {
+        return {
+        }
+    },
     methods: {
-        logout: (e) => {
+        logout: function (e) {
             axios
                 .get('/api/logout')
                 .then(() => {
+                    localStorage.setItem('user', false)
                     router.push('/')
+                })
+                .catch((errors) => {
+                    this.showAlert = true
+                    console.log(errors)
                 })
         }
     }
 }
 </script>
-
-<style>
-</style>

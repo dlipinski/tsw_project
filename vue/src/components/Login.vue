@@ -1,7 +1,7 @@
 <template>
 <div class='container pt-5 w-50'>
     <b-alert variant='danger' dismissible :show='showAlert'>
-        Nie można się zalogować.
+        Niepoprawne dane logowania. Spróbuj ponownie.
     </b-alert>
     <b-card header='Login' class='w-50 m-auto'>
         <b-form @submit='login'>
@@ -27,18 +27,17 @@ export default {
         }
     },
     methods: {
-        login: (e) => {
+        login: function (e) {
             e.preventDefault()
-            let username = e.target.elements.username.value
-            let password = e.target.elements.password.value
             let login = () => {
                 let data = {
-                    username, password
+                    username: e.target.elements.username.value,
+                    password: e.target.elements.password.value
                 }
                 axios.post('/api/login', data)
                     .then((response) => {
-                        // self.$set(this, 'user', response.data.user)
-                        router.push('/dashboard')
+                        localStorage.setItem('user', true)
+                        router.push('/')
                     })
                     .catch((errors) => {
                         this.showAlert = true

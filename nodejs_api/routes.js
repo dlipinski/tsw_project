@@ -4,6 +4,7 @@ const classController = require('./controllers/classController')
 const personController = require('./controllers/personController')
 const horseController = require('./controllers/horseController')
 const noteController = require('./controllers/noteController')
+const customController = require('./controllers/customController')
 
 //temp
 const User = require('./models/userModel')
@@ -25,19 +26,8 @@ module.exports = (passport) => {
         req.logout()
         res.end()
     })
-    router.get("/user", authMiddleware, (req, res) => {
-        User.findById(
-            req.session.passport.user,
-            (err, user) => {
-                res.send({user})
-            }
-        )
-    })
 
     /* CLASS */
-    router.get('/classes', (req, res) => {
-        res.redirect('/api/classes/1')
-    })
     router.get('/classes/:page', classController.list)
     router.get('/class/:id', classController.show)
     router.post('/class', classController.create)
@@ -45,19 +35,13 @@ module.exports = (passport) => {
     router.delete('/class/:id', classController.remove)
 
     /* PERSON */
-    router.get('/persons', (req, res) => {
-        res.redirect('/api/persons/1')
-    })
     router.get('/persons/:page', personController.list)
     router.get('/person/:id', personController.show)
     router.post('/person', personController.create)
-    router.put('/person/:id', classController.update)
+    router.put('/person/:id', personController.update)
     router.delete('/person/:id', personController.remove)
 
     /* HORSE */
-    router.get('/horses', (req, res) => {
-        res.redirect('/api/horses/1')
-    })
     router.get('/horses/:page', horseController.list)
     router.get('/horse/:id', horseController.show)
     router.post('/horse', horseController.create)
@@ -65,15 +49,17 @@ module.exports = (passport) => {
     router.delete('/horse/:id', horseController.remove)
 
     /* NOTE */
-    router.get('/notes', (req, res) => {
-        res.redirect('/api/notes/1')
-    })
     router.get('/notes/:page', noteController.list)
     router.get('/note/:id', noteController.show)
     router.post('/note', noteController.create)
     router.put('/note/:id', noteController.update)
     router.delete('/note/:id', noteController.remove)
 
+    /* CUSTOM */
+    router.get('/judges/:page', customController.list_judges)
+    router.get('/classesClient/:page', customController.list_classes_client)
+    router.get('/classClient/:id', customController.show_class_client)
+    
     return router
 }
 
